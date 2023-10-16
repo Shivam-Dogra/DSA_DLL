@@ -125,5 +125,29 @@ public class Structure {
         }
         return false;
      }
+
+     //DDL Insert
+     public boolean insert(int index, int value){
+         if(index < 0 || index >= len) return false;
+        if(index == 0){
+             preprend(value);
+             return true;
+        }
+        if(index == len){
+            appendNode(value);
+            return true;
+        }
+        Node newNode = new Node(value);
+        Node before = get(index-1);
+        Node after = before.next;
+        newNode.previous = before;
+        newNode.next = after;
+        before.next = newNode;
+        after.previous = newNode;
+        len++;
+        return true;
+
+     }
+     
     
 }
